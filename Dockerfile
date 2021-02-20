@@ -39,6 +39,6 @@ COPY "setup.bat" "c:\setup.bat"
 RUN "setup.bat"
 
 # Cleanup
-RUN DEL /F/Q/S c:\modulemaps && DEL setup.bat
+RUN DEL /F/Q/S c:\modulemaps && DEL c:\setup.bat && DEL C:\swift-windows-installer.exe
 
 ENTRYPOINT ["cmd"]
