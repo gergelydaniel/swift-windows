@@ -1,9 +1,9 @@
 CALL C:\BuildTools\Common7\Tools\VsDevCmd.bat -arch=amd64
 
-copy C:\modulemaps\ucrt.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\ucrt\module.modulemap"
-copy C:\modulemaps\visualc.modulemap "%VCToolsInstallDir%\include\module.modulemap"
-copy C:\modulemaps\visualc.apinotes "%VCToolsInstallDir%\include\visualc.apinotes"
-copy C:\modulemaps\winsdk.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\um\module.modulemap"
+copy %SDKROOT%\usr\share\ucrt.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\ucrt\module.modulemap"
+copy %SDKROOT%\usr\share\visualc.modulemap "%VCToolsInstallDir%\include\module.modulemap"
+copy %SDKROOT%\usr\share\visualc.apinotes "%VCToolsInstallDir%\include\visualc.apinotes"
+copy %SDKROOT%\usr\share\winsdk.modulemap "%UniversalCRTSdkDir%\Include\%UCRTVersion%\um\module.modulemap"
 
 setx INCLUDE "%INCLUDE%"
 setx LIB "%VCToolsInstallDir%lib\x64;%UniversalCRTSdkDir%Lib\%UCRTVersion%\ucrt\x64;%UniversalCRTSdkDir%Lib\%UCRTVersion%\um\x64"

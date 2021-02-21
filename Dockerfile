@@ -10,7 +10,7 @@ RUN powershell mkdir .\TEMP\; `
     --add Microsoft.VisualStudio.Component.VC.CMake.Project `
     --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
     --add Microsoft.VisualStudio.Component.Windows10SDK `
-    --add Microsoft.VisualStudio.Component.Windows10SDK.18362'; `
+    --add Microsoft.VisualStudio.Component.Windows10SDK.17763'; `
     Remove-Item –path .\TEMP\vs_buildtools.exe
 
 # Install git
@@ -40,5 +40,9 @@ RUN "setup.bat"
 
 # Cleanup
 RUN DEL /F/Q/S c:\modulemaps && DEL c:\setup.bat && DEL C:\swift-windows-installer.exe
+
+ADD glfw "c:\libraries\glfw"
+
+RUN setx LIB "%LIB%;c:\libraries\glfw\lib" && setx INCLUDE "%INCLUDE%;c:\libraries\glfw\include"
 
 ENTRYPOINT ["cmd"]
