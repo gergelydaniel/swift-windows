@@ -29,11 +29,16 @@ ADD "https://swift.org/builds/development/windows10/swift-DEVELOPMENT-SNAPSHOT-2
 RUN C:\swift-windows-installer.exe /quiet
 
 # Set up modulemaps and environment variables
+ADD "https://raw.githubusercontent.com/apple/swift/main/stdlib/public/Platform/ucrt.modulemap" "C:\\modulemaps\\ucrt.modulemap"
+ADD "https://raw.githubusercontent.com/apple/swift/main/stdlib/public/Platform/visualc.modulemap" "C:\\modulemaps\\visualc.modulemap"
+ADD "https://raw.githubusercontent.com/apple/swift/main/stdlib/public/Platform/visualc.apinotes" "C:\\modulemaps\\visualc.apinotes"
+ADD "https://raw.githubusercontent.com/apple/swift/main/stdlib/public/Platform/winsdk.modulemap" "C:\\modulemaps\\winsdk.modulemap"
+
 COPY "setup.bat" "c:\setup.bat"
 
 RUN "setup.bat"
 
 # Cleanup
-RUN DEL c:\setup.bat && DEL C:\swift-windows-installer.exe
+RUN DEL /F/Q/S c:\modulemaps && DEL c:\setup.bat && DEL C:\swift-windows-installer.exe
 
 ENTRYPOINT ["cmd"]
